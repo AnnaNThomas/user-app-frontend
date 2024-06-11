@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Nav from './Nav'
+import axios from 'axios';
 
 const Addlogin = () => {
+  
+    const [data,setData] = useState(
+        {
+
+            "username": "",
+            "password": ""
+
+        }
+    )
+    const inputHandler = (event) => {
+        setData({ ...data, [event.target.name]: event.target.value })
+    }
+    const readValue = () => {
+        console.log(data)
+    }
+    
   return (
     <div>
       <Nav/>
@@ -14,14 +31,14 @@ const Addlogin = () => {
           <div className="row g-3">
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
               <label className="form-label">USERNAME</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" username={data.username} onChange={inputHandler} />
             </div>
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
               <label className="form-label">PASSWORD</label>
-              <input type="text" className="form-control" />
+              <input type="text" className="form-control" password={data.password} onChange={inputHandler} />
             </div>
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-              <button className="btn btn-primary">LOGIN</button>
+              <button className="btn btn-primary" onClick={readValue}>LOGIN</button>
             </div>
             <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <p><a href="/Signup" class="link-primary">NEW USER CLICK HERE</a></p>
